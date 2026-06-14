@@ -100,6 +100,12 @@ export interface ResourceDef {
   id: string;
   name: string;
   extractor: ExtractorKind;
+  /** Short monogram shown inside the icon badge (1–3 chars). */
+  short: string;
+  /** Badge background color (hex), roughly matching the in-game resource. */
+  color: string;
+  /** Badge text color (hex) for contrast against `color`. */
+  textColor: string;
 }
 
 /**
@@ -107,19 +113,19 @@ export interface ResourceDef {
  * game. Each resource is bound to the extractor family that harvests it.
  */
 export const RESOURCES: ResourceDef[] = [
-  { id: 'ironOre', name: 'Iron Ore', extractor: 'miner' },
-  { id: 'copperOre', name: 'Copper Ore', extractor: 'miner' },
-  { id: 'limestone', name: 'Limestone', extractor: 'miner' },
-  { id: 'coal', name: 'Coal', extractor: 'miner' },
-  { id: 'cateriumOre', name: 'Caterium Ore', extractor: 'miner' },
-  { id: 'rawQuartz', name: 'Raw Quartz', extractor: 'miner' },
-  { id: 'sulfur', name: 'Sulfur', extractor: 'miner' },
-  { id: 'bauxite', name: 'Bauxite', extractor: 'miner' },
-  { id: 'uranium', name: 'Uranium', extractor: 'miner' },
-  { id: 'sam', name: 'SAM', extractor: 'miner' },
-  { id: 'crudeOil', name: 'Crude Oil', extractor: 'oilExtractor' },
-  { id: 'water', name: 'Water', extractor: 'waterExtractor' },
-  { id: 'nitrogenGas', name: 'Nitrogen Gas', extractor: 'resourceWell' },
+  { id: 'ironOre', name: 'Iron Ore', extractor: 'miner', short: 'Fe', color: '#b9bec7', textColor: '#1f2937' },
+  { id: 'copperOre', name: 'Copper Ore', extractor: 'miner', short: 'Cu', color: '#e07a3f', textColor: '#1f2937' },
+  { id: 'limestone', name: 'Limestone', extractor: 'miner', short: 'Ls', color: '#d9cfbb', textColor: '#1f2937' },
+  { id: 'coal', name: 'Coal', extractor: 'miner', short: 'Co', color: '#374151', textColor: '#f9fafb' },
+  { id: 'cateriumOre', name: 'Caterium Ore', extractor: 'miner', short: 'Ct', color: '#e6b53f', textColor: '#1f2937' },
+  { id: 'rawQuartz', name: 'Raw Quartz', extractor: 'miner', short: 'Qz', color: '#d36fb0', textColor: '#1f2937' },
+  { id: 'sulfur', name: 'Sulfur', extractor: 'miner', short: 'S', color: '#e6d23f', textColor: '#1f2937' },
+  { id: 'bauxite', name: 'Bauxite', extractor: 'miner', short: 'Bx', color: '#c98a6b', textColor: '#1f2937' },
+  { id: 'uranium', name: 'Uranium', extractor: 'miner', short: 'U', color: '#4caf50', textColor: '#0b1f0c' },
+  { id: 'sam', name: 'SAM', extractor: 'miner', short: 'SAM', color: '#7c3aed', textColor: '#f9fafb' },
+  { id: 'crudeOil', name: 'Crude Oil', extractor: 'oilExtractor', short: 'Oil', color: '#2b2f3a', textColor: '#f9fafb' },
+  { id: 'water', name: 'Water', extractor: 'waterExtractor', short: 'H₂O', color: '#3b82f6', textColor: '#f9fafb' },
+  { id: 'nitrogenGas', name: 'Nitrogen Gas', extractor: 'resourceWell', short: 'N₂', color: '#06b6d4', textColor: '#062a33' },
 ];
 
 export interface BeltDef {

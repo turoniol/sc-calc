@@ -4,11 +4,12 @@ import {
   OVERCLOCK_MAX,
   OVERCLOCK_MIN,
   PURITIES,
-  RESOURCES,
   getKindDef,
   getResource,
 } from '../data/mining';
 import { computeRow, fmt, smallestBeltFor, type RowConfig } from '../lib/calc';
+import ResourceSelect from './ResourceSelect';
+import { CopyIcon, TrashIcon } from './icons';
 
 interface Props {
   row: RowConfig;
@@ -53,35 +54,27 @@ export default function MiningRow({ row, index, onChange, onDuplicate, onRemove 
           <button
             type="button"
             onClick={onDuplicate}
-            className="rounded-md border border-slate-600 px-2 py-1 text-xs text-slate-300 hover:bg-slate-700"
+            className="inline-flex items-center gap-1 rounded-md border border-slate-600 px-2 py-1 text-xs text-slate-300 hover:bg-slate-700"
           >
+            <CopyIcon className="h-3.5 w-3.5" />
             Duplicate
           </button>
           <button
             type="button"
             onClick={onRemove}
-            className="rounded-md border border-red-800 px-2 py-1 text-xs text-red-300 hover:bg-red-900/40"
+            className="inline-flex items-center gap-1 rounded-md border border-red-800 px-2 py-1 text-xs text-red-300 hover:bg-red-900/40"
           >
+            <TrashIcon className="h-3.5 w-3.5" />
             Remove
           </button>
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-        {/* Resource */}
+        {/* Resource — searchable combobox with icons */}
         <div>
           <label className={labelCls}>Resource</label>
-          <select
-            className={inputCls}
-            value={row.resourceId}
-            onChange={(e) => handleResourceChange(e.target.value)}
-          >
-            {RESOURCES.map((r) => (
-              <option key={r.id} value={r.id}>
-                {r.name}
-              </option>
-            ))}
-          </select>
+          <ResourceSelect value={row.resourceId} onChange={handleResourceChange} />
         </div>
 
         {/* Purity */}

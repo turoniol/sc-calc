@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
+import { getResource } from '../data/mining';
 import { aggregateTotals, fmt, type RowConfig } from '../lib/calc';
+import ResourceIcon from './ResourceIcon';
 
 export default function Summary({ rows }: { rows: RowConfig[] }) {
   const totals = useMemo(() => aggregateTotals(rows), [rows]);
@@ -25,7 +27,12 @@ export default function Summary({ rows }: { rows: RowConfig[] }) {
               const limited = t.effectiveTotal < t.totalRate - 1e-9;
               return (
                 <tr key={t.resourceId} className="border-t border-slate-700/60">
-                  <td className="py-1.5 text-slate-200">{t.resourceName}</td>
+                  <td className="py-1.5 text-slate-200">
+                    <span className="flex items-center gap-2">
+                      <ResourceIcon resource={getResource(t.resourceId)} size={18} />
+                      {t.resourceName}
+                    </span>
+                  </td>
                   <td className="py-1.5 text-right tabular-nums text-slate-300">
                     {fmt(t.totalRate)} <span className="text-slate-500">{t.unit}</span>
                   </td>

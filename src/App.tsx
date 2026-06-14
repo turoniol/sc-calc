@@ -3,6 +3,7 @@ import MiningRow from './components/MiningRow';
 import Summary from './components/Summary';
 import type { RowConfig } from './lib/calc';
 import { createRow, duplicateRow, exportRows, importRows } from './state';
+import { DownloadIcon, PlusIcon, UploadIcon } from './components/icons';
 
 export default function App() {
   const [rows, setRows] = useState<RowConfig[]>(() => [createRow()]);
@@ -85,22 +86,25 @@ export default function App() {
               <button
                 type="button"
                 onClick={addRow}
-                className="rounded-md bg-orange-500 px-3 py-1.5 text-sm font-semibold text-slate-950 hover:bg-orange-400"
+                className="inline-flex items-center gap-1.5 rounded-md bg-orange-500 px-3 py-1.5 text-sm font-semibold text-slate-950 hover:bg-orange-400"
               >
-                + Add row
+                <PlusIcon className="h-4 w-4" />
+                Add row
               </button>
               <button
                 type="button"
                 onClick={handleExport}
-                className="rounded-md border border-slate-600 px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-800"
+                className="inline-flex items-center gap-1.5 rounded-md border border-slate-600 px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-800"
               >
+                <DownloadIcon className="h-4 w-4" />
                 Export JSON
               </button>
               <button
                 type="button"
                 onClick={handleImportClick}
-                className="rounded-md border border-slate-600 px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-800"
+                className="inline-flex items-center gap-1.5 rounded-md border border-slate-600 px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-800"
               >
+                <UploadIcon className="h-4 w-4" />
                 Import JSON
               </button>
               <input
