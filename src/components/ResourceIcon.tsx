@@ -1,6 +1,11 @@
 import type { ResourceDef } from '../data/mining';
+import { resourceIconUrl } from '../data/resourceIcons';
 
-/** Colored monogram badge used as a lightweight resource icon. */
+/**
+ * Resource icon. Renders the real in-game item icon when available, otherwise
+ * falls back to a colored monogram badge (keeps the UI resilient for resources
+ * that don't yet have an image).
+ */
 export default function ResourceIcon({
   resource,
   size = 22,
@@ -8,6 +13,22 @@ export default function ResourceIcon({
   resource: ResourceDef;
   size?: number;
 }) {
+  const url = resourceIconUrl(resource.id);
+
+  if (url) {
+    return (
+      <img
+        src={url}
+        alt={resource.name}
+        title={resource.name}
+        draggable={false}
+        loading="lazy"
+        className="shrink-0 object-contain"
+        style={{ width: size, height: size }}
+      />
+    );
+  }
+
   return (
     <span
       aria-hidden
